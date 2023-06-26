@@ -218,7 +218,25 @@ namespace Day01
                     loop over the grades list and print out each grade
 
             */
-
+            Console.WriteLine("\n-----GRADES--------");
+            for (int i = 0; i < grades.Count; i++)
+            {
+                Console.WriteLine(grades[i]);
+            }
+            Console.WriteLine("\n---GRADES---");
+            foreach (var grade in grades)
+            {
+                //ternary operator
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue :
+                                          ConsoleColor.Green;
+                //,7 means right-align in 7 spaces
+                //:N2 means format as a number with 2 decimal places
+                Console.WriteLine($"{grade,7:N2}");
+            }
+            Console.ResetColor();
 
 
 
