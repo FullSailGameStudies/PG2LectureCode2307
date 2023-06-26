@@ -49,10 +49,21 @@ namespace Day01
      */
     internal class Program
     {
+        static int Add(int n1, int n2)
+        {
+            //int n1 = 5, n2 = 2;
+            int sum = n1 + n2;
+            //Console.WriteLine(sum);
+            return sum;
+        }
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-
+            int num1 = 13, num2 = 407;
+            int result = Add(num1, num2);
+            //$ - interpolated string
+            Console.WriteLine($"{num1} + {num2} = {result}");
+            result = Add(5, 2);
             /*
               Calling a method
                 use the methods name.
@@ -79,14 +90,17 @@ namespace Day01
             /*
                 CHALLENGE 1:
 
-                    Add an isEven method to the calculator.
+                    Add an IsEven method to the calculator class (see below).
                     It should take 1 parameter and return a bool.
 
                     Call the method on the t1000 calculator instance and print the results.
 
             */
-            Calculator t1000 = new Calculator();
-
+            Calculator t800 = new Calculator();//creating an instance of Calculator
+            Calculator.WhoAmI();//b/c it's static, I use the class name to access it.
+            result = t800.Sum(num1, num2);
+            bool isEven = t800.IsEven(num2);
+            Console.WriteLine($"Is {num2} even? {isEven}");
 
 
 
@@ -122,6 +136,29 @@ namespace Day01
             */
             List<char> letters = new List<char>() { 'B', 'a', 't', 'm', 'a', 'n' };
             letters.Add('!');
+
+
+            string[] best = new string[] { "Batman", "Bruce", "NOT Aquaman" };
+            string name = best[1];//0-based indexes
+            Console.WriteLine(name);
+            Console.WriteLine("----BEST NAMES---");
+            for (int i = 0; i < best.Length; i++)
+            {
+                Console.WriteLine(best[i]);
+            }
+            Console.WriteLine("----BEST NAMES---");
+            best[2] = "The Greatest Detective";
+            foreach (var bestName in best)
+            {
+                Console.WriteLine(bestName);
+            }
+
+            List<string> bestnames;//null
+            bestnames = new List<string>() {"Batman"};
+            bestnames.Add("Bruce Wayne");
+            bestnames.Add("Wonder Woman");
+            bestnames.Add("Superman");
+            bestnames.Add("The Joker");
 
             /*
                 CHALLENGE 2:
@@ -189,6 +226,14 @@ namespace Day01
 
     class Calculator
     {
+        public bool IsEven(int someNumber)
+        {
+            return someNumber % 2 == 0;
+        }
+        public static void WhoAmI()
+        {
+            Console.WriteLine("The T800. I am a cybernetic organism.");
+        }
         public int Sum(int num1, int num2)
         {
             return num1 + num2;
