@@ -154,11 +154,24 @@ namespace Day01
             }
 
             List<string> bestnames;//null
-            bestnames = new List<string>() {"Batman"};
+            bestnames = new List<string>();// {"Batman"};
+            Info(bestnames);//Count: 0   Capacity: 0
             bestnames.Add("Bruce Wayne");
+            Info(bestnames);//Count: 1   Capacity: 4
+            //bestnames[2] = "Steve";
+            bestnames[0] = "Mr. Wayne";
+
             bestnames.Add("Wonder Woman");
             bestnames.Add("Superman");
             bestnames.Add("The Joker");
+            bestnames.Add("Bane");
+            Info(bestnames);//Count: 5   Capacity: 8? 20?
+            bestnames.Add("Flash");
+            bestnames.Add("Riddler");
+            bestnames.Add("Penguin");
+            bestnames.Add("Two-Face");
+            bestnames.Add("Poison Ivy");
+            Info(bestnames);//Count: 10   Capacity: 14? 13?
 
             /*
                 CHALLENGE 2:
@@ -202,7 +215,7 @@ namespace Day01
             /*
                 CHALLENGE 3:
 
-                    loop over the grades vector and print out each grade
+                    loop over the grades list and print out each grade
 
             */
 
@@ -222,6 +235,14 @@ namespace Day01
 
 
             Console.ReadKey(true);
+        }
+
+
+        private static void Info(List<string> names)
+        {
+            //Count: # of items added to the list
+            //Capacity: size (length) of the internal array
+            Console.WriteLine($"Count: {names.Count}\tCapacity: {names.Capacity}");
         }
 
         private static int AddOne(int localNumber)
