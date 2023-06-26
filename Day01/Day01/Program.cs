@@ -167,6 +167,14 @@ namespace Day01
                     Add a few grades to the grades list.
              
             */
+            Random rando = new Random();
+            List<float> grades = new List<float>();
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
 
 
 
