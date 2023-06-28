@@ -92,14 +92,7 @@ namespace Day02
 
             //anonymous types
             //var anon = new { TheBest = "Batman" };
-
-            Console.WriteLine("---PG2 Grades---");
-            foreach (float studentgrade in grades)
-            {
-                //,7 - right-align in 7 spaces
-                //:N2 - format as a number w/ 2 decimal places
-                Console.WriteLine($"{studentgrade,7:N2}");
-            }
+            PrintGrades(grades);
             Console.ReadKey();
 
 
@@ -116,11 +109,22 @@ namespace Day02
             ConsoleColor randoColor; //don't have to initialize it
             bool colorIsBlack = GetRandomColor(out randoColor);
             Console.BackgroundColor = randoColor;
-            if (colorIsBlack)  
+            if (colorIsBlack)
                 Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Hello Gotham!");
             Console.ResetColor();
             Console.ReadKey();
+
+            //while (true)
+            //{
+            //    Console.SetCursorPosition(randy.Next(Console.WindowWidth), randy.Next(Console.WindowHeight-1));
+
+            //    colorIsBlack = GetRandomColor(out randoColor);
+            //    Console.BackgroundColor = randoColor;
+            //    Console.Write("Batman");
+            //    Console.ResetColor();
+            //}
+
 
 
             /*
@@ -133,7 +137,8 @@ namespace Day02
                     3) print out the min, max, and avg
              
             */
-            GradeStats(grades, out float min, out float max, out float avg);
+            //GradeStats(grades, out float min, out float max, out float avg);
+            (float min, float max, float avg) = GradeStats(grades);
             Console.WriteLine($"Min: {min:N2}\tMax: {max:N2}\tAverage: {avg:N2}");
 
 
@@ -151,9 +156,8 @@ namespace Day02
                 2) RemoveAt(index). will remove the item from the list at the index
 
             */
-            List<string> dc = new() { "Batman", "Wonder Woman", "Aquaman", "Superman", "Aquaman" };
+            List<string> dc = new() { "Batman", "Wonder Woman", "Aquaman", "Aquaman", "Superman", "Aquaman" };
             bool found = dc.Remove("Aquaman");
-
             dc.RemoveAt(dc.Count - 1);//removes the last item
 
             /*
@@ -163,14 +167,53 @@ namespace Day02
                     Remove all the failing grades (grades < 59.5).
                     Print the grades.
             */
+            //for (int i = 0; i < grades.Count;)
+            //{
+            //    if (grades[i] < 59.5)
+            //    {
+            //        grades.RemoveAt(i);
+            //        //grades.Remove(grades[i]);//less efficient
+            //    }
+            //    else
+            //        i++;
+            //}
 
+            //reverse for loop
+            for (int i = grades.Count - 1; i >= 0; i--)
+            {
+                if (grades[i] < 59.5)
+                    grades.RemoveAt(i);
+            }
+            PrintGrades(grades);
 
 
 
         }
 
+        private static void PrintGrades(List<float> grades)
+        {
+            Console.WriteLine("---PG2 Grades---");
+            foreach (float studentgrade in grades)
+            {
+                //,7 - right-align in 7 spaces
+                //:N2 - format as a number w/ 2 decimal places
+                Console.WriteLine($"{studentgrade,7:N2}");
+            }
+        }
+
+        private static (float,float,float) GradeStats(List<float> grades)
+        {
+            float min = grades.Min();
+            float max = grades.Max();
+            float avg = grades.Average();
+            return (min,max,avg);//return a tuple
+        }
         private static void GradeStats(List<float> grades, out float min, out float max, out float avg)
         {
+            //min = grades.Min();
+            //max = grades.Max();
+            //avg = grades.Average();
+
             min = float.MaxValue;
             max = float.MinValue;
             avg = 0;
@@ -179,8 +222,8 @@ namespace Day02
                 min = Math.Min(min, grade);
                 max = Math.Max(max, grade);
                 avg += grade;
-            }
-            avg /= grades.Count;
+            }   
+            avg /= grades.Count;            
         }
 
         private static void GetGrades(ref List<float> grades)
