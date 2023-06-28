@@ -116,7 +116,7 @@ namespace Day02
             ConsoleColor randoColor; //don't have to initialize it
             bool colorIsBlack = GetRandomColor(out randoColor);
             Console.BackgroundColor = randoColor;
-            if (colorIsBlack)
+            if (colorIsBlack)  
                 Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Hello Gotham!");
             Console.ResetColor();
@@ -133,8 +133,8 @@ namespace Day02
                     3) print out the min, max, and avg
              
             */
-
-
+            GradeStats(grades, out float min, out float max, out float avg);
+            Console.WriteLine($"Min: {min:N2}\tMax: {max:N2}\tAverage: {avg:N2}");
 
 
 
@@ -167,6 +167,20 @@ namespace Day02
 
 
 
+        }
+
+        private static void GradeStats(List<float> grades, out float min, out float max, out float avg)
+        {
+            min = float.MaxValue;
+            max = float.MinValue;
+            avg = 0;
+            foreach (float grade in grades)
+            {
+                min = Math.Min(min, grade);
+                max = Math.Max(max, grade);
+                avg += grade;
+            }
+            avg /= grades.Count;
         }
 
         private static void GetGrades(ref List<float> grades)
