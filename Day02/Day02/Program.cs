@@ -74,6 +74,9 @@ namespace Day02
             */
             string spider = "Spiderman";
             bool isEven = PostFix(ref spider);
+            Console.WriteLine($"{spider}. Even? {isEven}");
+            string bats = "Batman";
+            isEven = PostFix(ref bats);
 
             /*
                 CHALLENGE 1:
@@ -83,8 +86,21 @@ namespace Day02
                     2) add 10 grades to the list
 
             */
+            List<float> grades = null;// new List<float>();
+            GetGrades(ref grades);
             double grade = randy.NextDouble() * 100;
 
+            //anonymous types
+            //var anon = new { TheBest = "Batman" };
+
+            Console.WriteLine("---PG2 Grades---");
+            foreach (float studentgrade in grades)
+            {
+                //,7 - right-align in 7 spaces
+                //:N2 - format as a number w/ 2 decimal places
+                Console.WriteLine($"{studentgrade,7:N2}");
+            }
+            Console.ReadKey();
 
 
             /*  
@@ -98,9 +114,13 @@ namespace Day02
 
             */
             ConsoleColor randoColor; //don't have to initialize it
-            GetRandomColor(out randoColor);
+            bool colorIsBlack = GetRandomColor(out randoColor);
             Console.BackgroundColor = randoColor;
+            if (colorIsBlack)
+                Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Hello Gotham!");
+            Console.ResetColor();
+            Console.ReadKey();
 
 
             /*
@@ -149,15 +169,31 @@ namespace Day02
 
         }
 
-        private static void GetRandomColor(out ConsoleColor outColor)
+        private static void GetGrades(ref List<float> grades)
+        {
+            //create the list
+            //loop 10 times
+            //  create a random grade and add it to the list
+            grades = new List<float>();
+            for (int i = 0; i < 10; i++)
+            {
+                //create a random grade
+                //float grade = (float)randy.NextDouble() * 100;
+                //add it to the list
+                grades.Add((float)randy.NextDouble() * 100);
+            }
+        }
+
+        private static bool GetRandomColor(out ConsoleColor outColor)
         {
             //the method MUST initialize the outColor parameter
             outColor = (ConsoleColor)randy.Next(16);
-
+            return outColor == ConsoleColor.Black;
         }
 
         static bool PostFix(ref string hero) //hero is now an alias to the variable used when calling PostFix. In this case, hero is an alias to the spider variable.
         {
+            //spider = "Spiderman";
             int postFix = randy.Next(100);
             hero += $"-{postFix}"; //updating hero now also updates spider
             return postFix % 2 == 0; //isEven

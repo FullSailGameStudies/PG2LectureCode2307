@@ -239,9 +239,6 @@ namespace Day01
             Console.ResetColor();
 
 
-
-
-
             /*
                 BOSS CHALLENGE:
 
