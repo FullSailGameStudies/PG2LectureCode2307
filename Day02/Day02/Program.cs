@@ -186,10 +186,7 @@ namespace Day02
             }
             PrintGrades(grades);
 
-
-
         }
-
         private static void PrintGrades(List<float> grades)
         {
             Console.WriteLine("---PG2 Grades---");
