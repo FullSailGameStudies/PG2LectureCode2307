@@ -95,12 +95,24 @@ namespace Day03
                     EX: if 6 is passed, print "na na na na na na Batman"
 
             */
+            List<string> names = new() { "Bob", "Steve", "Carl" };
+            PrintNames(names.ToList());
+            Console.WriteLine("----in Main------");
+            foreach (var name in names)
+            {
+                ColorWriteLine(name);
+                Console.WriteLine();
+            }
             BatTheme();
             BatTheme(25);
 
+            Console.ReadKey();
+            BatTheme4Ever();
 
             /*
                 CHALLENGE 2:
+
+                ConsoleColor
 
                     Write a ColorWriteLine method to print a message with a foreground color in the console.
                     1) add a string message parameter AND an optional color parameter. 
@@ -113,13 +125,50 @@ namespace Day03
 
         }
 
+        private static void PrintNames(List<string> names)//pass by value (COPY)
+        {
+            Console.WriteLine("----in PrintNames------");
+            names[0] = "Bruce";
+            names[1] = "Alfred";
+            names[2] = "Richard";
+            foreach (var name in names)
+            {
+                ColorWriteLine(name);
+                Console.WriteLine();
+            }
+        }
+
+        static void ColorWriteLine(string message, ConsoleColor fore = ConsoleColor.DarkCyan,
+            ConsoleColor back = ConsoleColor.Black)
+        {
+            Console.ForegroundColor = fore;
+            Console.BackgroundColor = back;
+            Console.Write(message);
+            Console.ResetColor();
+        }
+
         static void BatTheme(int nas = 13)
         {
+            Random randy = new Random();
             for (int i = 0; i < nas; i++)
             {
-                Console.Write("na ");
+                ColorWriteLine("na ", (ConsoleColor)randy.Next(16));
             }
             Console.WriteLine("Batman!");
+        }
+
+        static void BatTheme4Ever()
+        {
+            Random randy = new Random();
+            while (true)
+            {
+                Console.SetCursorPosition(randy.Next(Console.WindowWidth), randy.Next(Console.WindowHeight));
+                if (randy.Next(1000) == 500)
+                    ColorWriteLine("Batman ", (ConsoleColor)randy.Next(16), (ConsoleColor)randy.Next(16));
+                else
+                    ColorWriteLine("na ", (ConsoleColor)randy.Next(16));
+
+            }
         }
 
         static string PostFix(string fileName, int postFixNumber = 1) //postFixNumber is optional
