@@ -77,7 +77,20 @@ namespace Day04
             List<string> A = new() { "Wonder Woman", "Batman", "Superman", "Flash", "Aquaman", "Blue Beetle", "Lobo" };
             //call your bubble sort method and pass the list to it
             //print the list after calling the method to prove it was sorted
+            Console.WriteLine("---UNSORTED---");
+            foreach (var hero in A)
+            {
+                Console.WriteLine(hero);
+            }
 
+            bubbleSort(A);
+
+            Console.WriteLine("---SORTED---");
+            foreach (var hero in A)
+            {
+                Console.WriteLine(hero);
+            }
+            Console.ReadKey();
 
 
 
