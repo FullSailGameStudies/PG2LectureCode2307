@@ -7,8 +7,44 @@ namespace Day04
 {
     internal class Program
     {
+        static void bubbleSort(List<string> A)
+        {
+            int n = A.Count;
+            bool swapped;
+            do
+            {
+                swapped = false;
+                for (int i = 1; i <= n-1; i++)
+                {
+                    //int compareTo = A[i - 1].CompareTo(A[i]);
+                    if (A[i - 1].CompareTo(A[i]) > 0)//A[i-1] > A[i])//compare strings
+                    {
+                        //swap
+                        string temp = A[i - 1];
+                        A[i-1] = A[i];
+                        A[i] = temp;
+                        swapped = true;
+                    }//end if
+                }//end for
+                --n;
+            } while (swapped);
+        }//end procedure
+
         static void Main(string[] args)
         {
+
+            Console.WriteLine("---Comparing strings----");
+            string s1 = "Batman", s2 = "Aquaman";
+            int compareTo = s1.CompareTo(s2);
+            //  -1  LESS THAN
+            //   0  EQUAL TO
+            //   1  GREATER THAN
+            if(compareTo == 0)
+                Console.WriteLine($"{s1} EQUALS {s2}");
+            else if(compareTo == -1)
+                Console.WriteLine($"{s1} LESS THAN {s2}");
+            else if (compareTo == 1)
+                Console.WriteLine($"{s1} GREATER THAN {s2}");
 
             /*
                 ╔═══════╗ 
