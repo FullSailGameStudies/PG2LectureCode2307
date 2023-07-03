@@ -30,8 +30,19 @@ namespace Day04
             } while (swapped);
         }//end procedure
 
+        static void Method(int num)
+        {
+            if (num < 100)//exit condition
+            {
+                num++;
+                Method(num);
+            }
+            Console.WriteLine($"WE'RE DONE! {num}");
+        }//return
+
         static void Main(string[] args)
         {
+            Method(0);
 
             Console.WriteLine("---Comparing strings----");
             string s1 = "Batman", s2 = "Aquaman";
@@ -107,7 +118,7 @@ namespace Day04
               
             */
             int N = 0;
-            RecursiveLoop(N);
+            //RecursiveLoop(N);
             Console.ResetColor();
 
 
@@ -127,6 +138,8 @@ namespace Day04
             //
             //call Bats here
             //
+            int i = 0;
+            Bats(i);
             Console.WriteLine();
             List<int> b = new() { 66, 65, 84, 77, 65, 78, 33, 33 };
             foreach (var item in b) Console.Write((char)item);
@@ -136,6 +149,19 @@ namespace Day04
 
         }
 
+        private static void Bats(int i)
+        {
+            //exit condition
+            if (i >= 100)
+                return;//stops the recursive loop
+
+            {
+                Console.Write((char)78);
+                Console.Write((char)65);
+                Console.Write(' ');
+                Bats(i+1);
+            }
+        }
 
         static void RecursiveLoop(int N)
         {
