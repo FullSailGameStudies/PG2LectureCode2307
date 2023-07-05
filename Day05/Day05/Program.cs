@@ -239,6 +239,21 @@ namespace Day04
                     that is stored in the grades dictionary
              
             */
+            do
+            {
+                Console.Write("Please enter student's name to curve: ");
+                string studentName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(studentName)) break;
+
+                if (grades.TryGetValue(studentName, out double studentGrade))
+                {
+                    grades[studentName] = (studentGrade < 95) ? studentGrade + 5 : 100;
+                    PrintGrades(grades);
+                    Console.WriteLine($"{studentName}'s grade was {studentGrade:N2} and is now {grades[studentName]:N2}.");
+                }
+                else
+                    Console.WriteLine($"{studentName} is not in PG2 this month.");
+            } while (true);
         }
 
         private static void PrintGrades(Dictionary<string, double> grades)
