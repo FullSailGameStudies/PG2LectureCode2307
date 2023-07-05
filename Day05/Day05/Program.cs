@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Permissions;
 using System.Threading;
 
@@ -35,8 +36,9 @@ namespace Day04
                     
             */
             List<int> nums = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-            int searchNumber = 1;
-            int index = LinearSearch(nums, searchNumber);
+            nums.Add(20);
+            int searchNumber = 10;
+            int index = LinearSearch2(nums, searchNumber);
             if(index == -1)
                 Console.WriteLine($"{searchNumber} was not found.");
             else //if(index >=0)
@@ -65,9 +67,25 @@ namespace Day04
                 2) using the Add method. 
                 3) using [key] = value
             */
+            //type of the keys: string
+            //type of the values: float
+            Dictionary<string, float> menu = new Dictionary<string, float>()
+            {
+                //{key, value}
+                {"Hamburger", 12.99F},
+                {"Cheez Burger", 13.99F },
+                //{"Cheez Burger", 13.99F }//causes an exception!
+            };
+            menu.Add("Tater Tots", 5.99F);
+            //menu.Add("Tater Tots", 5.99F);//causes an exception!
+            menu.TryAdd("Fries", 4.99F);
+            menu.Add("Onion Rigs", 6.99F);
+            menu["Organic Salad"] = 15.99F;
+            menu["Organic Salad"] = 17.99F;//does NOT throw an exception. overwrites the value.
+            menu["Soda"] = 2.99F;
+
 
             Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
-
             backpack = new Dictionary<Weapon, int>()
             {
                 {Weapon.Sword, 5 }
@@ -86,7 +104,14 @@ namespace Day04
                     Add students and grades to your dictionary 
              
             */
-
+            List<string> students = new() { "Aidan", "Ali", "Amy", "Brandon", "Destiny", "Ja'Spring", "Lariq", "MiqKya", "Shuzhao", "Keith", "Vi", "Marco", "Anthony", "Alexander", "Clayton", "David", "Kevin", "Jonathan", "Antonio", "Tommy", "Tristan", "Colin", "Chanaya", "Eldwin" };
+            Dictionary<string, double> grades = new();
+            Random rando = new();
+            foreach (var student in students)
+            {
+                //grades.Add(student, rando.NextDouble() * 100);
+                grades[student] = rando.NextDouble() * 100;
+            }
 
 
 
@@ -105,6 +130,21 @@ namespace Day04
             foreach (KeyValuePair<Weapon,int> weaponCount in backpack)
                 Console.WriteLine($"You have {weaponCount.Value} {weaponCount.Key}");
 
+            Console.WriteLine("\n Welcome to Lebronald's ");
+            foreach (KeyValuePair<string,float> menuItem in menu)
+            {
+                string name = menuItem.Key;
+                float price = menuItem.Value;
+                Console.WriteLine($"{price,7:C2} {name}");
+            }
+            Console.ReadKey();
+
+            for (int i = 0; i < menu.Count; i++)
+            {
+                string menuName = menu.Keys.ElementAt(i);
+                float menuPrice = menu[menuName];
+            }
+
 
 
             /*
@@ -113,6 +153,7 @@ namespace Day04
                     Loop over your grades dictionary and print each student name and grade.
              
             */
+            PrintGrades(grades);
 
 
 
@@ -129,8 +170,8 @@ namespace Day04
                 1) ContainsKey(key)
                 2) TryGetValue(key, out value)
                
-            */            
-            if(backpack.ContainsKey(Weapon.Axe))
+            */
+            if (backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
             if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
@@ -175,6 +216,25 @@ namespace Day04
             */
         }
 
+        private static void PrintGrades(Dictionary<string, double> grades)
+        {
+            Console.WriteLine("\n\n  PG2 Grades  ");
+            foreach (var student in grades)
+            {
+                double grade = student.Value;
+                string name = student.Key;
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue : 
+                                                           ConsoleColor.Green;
+                Console.Write($"{grade,7:N2} ");
+                Console.ResetColor();
+                Console.WriteLine(name);
+            }
+            Console.WriteLine();
+        }
+
         private static int LinearSearch(List<int> nums, int searchNumber)
         {
             int found = -1;
@@ -188,6 +248,13 @@ namespace Day04
                 }
             }
             return found;
+        }
+        private static int LinearSearch2(List<int> nums, int searchNumber)
+        {
+            int found = 0;
+            while(found < nums.Count && nums[found] != searchNumber)
+                found++;
+            return (found==nums.Count) ? -1 : found; //ternary operator
         }
     }
 }
