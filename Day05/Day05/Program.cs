@@ -177,15 +177,37 @@ namespace Day04
             if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
                 Console.WriteLine($"{Weapon.Spear} count: {spearCount}");
 
+            string itemName = "Chicken Nuggets";
+            //float nuggetPrice = menu[itemName];//cause a key-not-found exception!
+            bool isFound = menu.ContainsKey(itemName);
+            if (isFound)
+            {
+                Console.WriteLine($"{itemName} is on the menu and costs {menu[itemName]:C2}");
+            }
+            isFound = menu.TryGetValue(itemName, out float itemPrice);
+            if(isFound)
+                Console.WriteLine($"{itemName} is on the menu and costs {itemPrice:C2}");
 
             /*
                 CHALLENGE 5:
 
-                    Using either of the 2 ways to check for a key, look for a specific student in the dictionary. 
+                    Using either of the 2 ways to check for a key, 
+                        look for a specific student in the dictionary. 
                     If the student is found, print out the student's grade
                     else print out a message that the student was not found
              
             */
+            do
+            {
+                Console.Write("Please enter student's name to lookup: ");
+                string studentName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(studentName)) break;
+
+                if(grades.TryGetValue(studentName, out double studentGrade))
+                    Console.WriteLine($"{studentName}'s grade is {studentGrade:N2}");
+                else
+                    Console.WriteLine($"{studentName} is not in PG2 this month.");
+            } while (true);
 
 
 
@@ -206,12 +228,15 @@ namespace Day04
             */
             backpack[Weapon.Mace] = 0; //sell all maces
 
+            menu[itemName] = 9.99F;
+            menu[itemName] = 6.99F;//overwrite the value
 
 
             /*
                 CHALLENGE 6:
 
-                    Pick any student and curve the grade (add 5) that is stored in the grades dictionary
+                    Pick any student and curve the grade (add 5) 
+                    that is stored in the grades dictionary
              
             */
         }
