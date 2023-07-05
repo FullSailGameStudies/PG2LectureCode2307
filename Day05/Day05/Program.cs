@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Permissions;
 using System.Threading;
 
 namespace Day04
@@ -33,6 +34,14 @@ namespace Day04
                         4) if reach the end of the list, return -1 which means not found
                     
             */
+            List<int> nums = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+            int searchNumber = 1;
+            int index = LinearSearch(nums, searchNumber);
+            if(index == -1)
+                Console.WriteLine($"{searchNumber} was not found.");
+            else //if(index >=0)
+                Console.WriteLine($"{searchNumber} was found at index {index}.");
+            Console.ReadKey();
 
 
 
@@ -47,32 +56,18 @@ namespace Day04
                 
                 When you want to create a Dictionary variable, replace TKey with whatever type of data you want to use for the keys and
                 replace TValue with the type you want to use for the values.
-            */
-           
-            Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
 
-            /*
-                CHALLENGE 2:
-
-                    Create a Dictionary that stores names (string) and grades. Call the variable grades.
-             
-            */
-
-
-
-
-            /*  
-                ╔══════════════════════════╗ 
-                ║ Dictionary<TKey, TValue> ║
-                ╚══════════════════════════╝ 
-
+            
                 [  Adding items to a Dictionary  ]
 
-                There are 3 ways to add items to a Dictionaruy:
+                There are 3 ways to add items to a Dictionary:
                 1) on the initializer. 
                 2) using the Add method. 
                 3) using [key] = value
             */
+
+            Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
+
             backpack = new Dictionary<Weapon, int>()
             {
                 {Weapon.Sword, 5 }
@@ -81,9 +76,14 @@ namespace Day04
             backpack[Weapon.Spear] = 1;
 
             /*
+                CHALLENGE 2:
+
+                    Create a Dictionary that stores names (string) and grades. 
+                    Call the variable grades.
+             
                 CHALLENGE 3:
 
-                    Add students and grades to your dictionary that you created in CHALLENGE 2.
+                    Add students and grades to your dictionary 
              
             */
 
@@ -173,6 +173,21 @@ namespace Day04
                     Pick any student and curve the grade (add 5) that is stored in the grades dictionary
              
             */
+        }
+
+        private static int LinearSearch(List<int> nums, int searchNumber)
+        {
+            int found = -1;
+            //start at the beginning
+            for (int index = 0; index < nums.Count; index++)
+            {
+                if (nums[index] == searchNumber)
+                {
+                    found = index;
+                    break;
+                }
+            }
+            return found;
         }
     }
 }
