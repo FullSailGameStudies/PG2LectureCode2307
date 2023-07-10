@@ -136,7 +136,8 @@ namespace Day07
                     Add a constructor to the Person class 
                     to initialize Age and Name
             */
-
+            Person bruce = new Person("Bruce Wayne", 35);
+            Person alfred = new Person("Alfred Pennyworth", 100);
 
 
 
