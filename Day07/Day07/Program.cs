@@ -41,7 +41,7 @@ namespace Day07
     {
         static void Main(string[] args)
         {
-            Car myRide = new Car();//created an INSTANCE of the Car class
+            Car myRide = new Car("Ford", "GT", 2023);//created an INSTANCE of the Car class
             //myRide.Year = 1980;
             Console.WriteLine($"The year of my car is {myRide.Year}");
 
@@ -133,7 +133,8 @@ namespace Day07
 
             
                 CHALLENGE 4:
-                    Add a constructor to the Person class to initialize Age and Name
+                    Add a constructor to the Person class 
+                    to initialize Age and Name
             */
 
 

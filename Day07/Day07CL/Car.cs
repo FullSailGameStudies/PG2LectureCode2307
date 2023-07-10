@@ -43,6 +43,18 @@ namespace Day07CL
         public string Model { get; private set; }
         #endregion
 
+        #region Ctors (Constructors)
+        public Car(string make, string model, int year) //default ctor (no parameters)
+        {
+            //year = Year;//BACKWARDS! WRONG!
+
+            //property/field = parameter
+            Make = make;
+            Model = model;
+            Year = year;
+        }
+        #endregion
+
         #region Methods
         public void WhatAmI(int currentYear)
         {
