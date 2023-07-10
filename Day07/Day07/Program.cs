@@ -163,20 +163,43 @@ namespace Day07
                     write an ItsMyBirthday method. increment age and print out a happy message.
             */
 
+            //static method... ClassName.Method
+            Car.CarReport();
 
+            //non-static (instance) method... instanceVariable.Method
+            myRide.WhatAmI();//myRide is passed in to the 'this' param
 
+            Car yourCar = new Car("Ford", "Pinto", 1975);
+            yourCar.WhatAmI();//yourCar is passed in to the 'this' param
 
-
+            PG2Color color;
+            color.r = 255;
+            color.g = 0;
+            color.b = 0;
+            color.a = 255;
 
             /*                              
                 CHALLENGE 6:
                     
-                1) create an enum for job position (Intern, JuniorDeveloper, Developer, SeniorDeveloper, LeadDeveloper, VicePresident, President, CEO
-                2) add a property to store the person position
-                3) create a Promotion method.
-                    pass in a parameter for the new position
-                    update the property and print out the new position
+            1) In the class library, create an enum called WeaponRarity
+                Add the following to the enum: Common, Uncommon, Rare, Legendary
+            2) Create a class called FantasyWeapon
+                Add the following auto-properties:
+                    Rarity (use the WeaponRarity as the type)
+                    Level (an int)
+                    MaxDamage (an int)
+                    Cost (an int)
+                Add the following method:
+                    DoDamage. Should return an int. It should calculate the damage by multiplying max damage by a randomly picking number between 0-1.
+                Add a constructor to FantasyWeapon that takes in parameters for rarity, level, maxDamage, cost.
+                    Be sure to set the properties with the parameters of the constructor.
+            3) In Main, create an instance of FantasyWeapon.
+                Call DoDamage on the instance and print the damage.
+
             */
+            FantasyWeapon sting = new(WeaponRarity.Legendary, 100, 1000, 100000);
+            int damage = sting.DoDamage();
+            Console.WriteLine($"You swing Sting and do {damage} damage to the rat.");
         }
     }
 }

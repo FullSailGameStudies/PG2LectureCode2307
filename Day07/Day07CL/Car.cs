@@ -16,6 +16,8 @@ namespace Day07CL
         private int _year;
         //  class variable: m_iYear  m_Year  mYear  _year  year_
         //  local variable: year
+
+        public static int NumberOfCarsBuilt = 0;
         #endregion
 
         #region Properties
@@ -52,14 +54,26 @@ namespace Day07CL
             Make = make;
             Model = model;
             Year = year;
+
+            NumberOfCarsBuilt++;
         }
         #endregion
 
         #region Methods
-        public void WhatAmI(int currentYear)
+        //an INSTANCE method (non-static)
+        //instance methods can access non-static AND static members
+        public void WhatAmI()//hidden parameter 'Car this'
         {
-            int year = DateTime.Now.Year;
-            Console.WriteLine($"{year}{currentYear}{_year}");
+            Console.WriteLine($"I own a {this.Year} {this.Make} {this.Model}.");
+            Console.WriteLine($"There were {NumberOfCarsBuilt} cars made.");
+        }
+
+        //static methods can ONLY access static members
+        public static void CarReport()//there is NO this param
+        {
+            //cannot access instance members (non-static)
+            //Console.WriteLine($"I own a {Year} {Make} {Model}.");
+            Console.WriteLine($"There were {NumberOfCarsBuilt} cars made.");
         }
         #endregion
     }
