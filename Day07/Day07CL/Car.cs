@@ -18,6 +18,31 @@ namespace Day07CL
         //  local variable: year
         #endregion
 
+        #region Properties
+        //a full property. Property (Year) + backing field (_year)
+        public int Year
+        {
+            //same as...
+            //public int GetYear() {return _year;}
+            get
+            {
+                return _year;
+            }
+
+            //same as...
+            //public void SetYear(int value) {_year = value;}
+            private set
+            {
+                if (value >= 1908 && value <= DateTime.Now.Year + 1)
+                    _year = value;
+            }
+        }
+
+        //an auto property. no backing field and no code for get/set
+        public string Make { get; private set; }
+        public string Model { get; private set; }
+        #endregion
+
         #region Methods
         public void WhatAmI(int currentYear)
         {

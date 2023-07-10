@@ -41,7 +41,9 @@ namespace Day07
     {
         static void Main(string[] args)
         {
-            Car myRide = new Car();
+            Car myRide = new Car();//created an INSTANCE of the Car class
+            //myRide.Year = 1980;
+            Console.WriteLine($"The year of my car is {myRide.Year}");
 
             /*
                 CHALLENGE 1:
