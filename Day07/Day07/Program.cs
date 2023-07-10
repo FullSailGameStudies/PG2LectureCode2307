@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Day07CL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,6 +41,7 @@ namespace Day07
     {
         static void Main(string[] args)
         {
+            Car myRide = new Car();
 
             /*
                 CHALLENGE 1:
