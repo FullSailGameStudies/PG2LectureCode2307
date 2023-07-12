@@ -56,12 +56,27 @@ namespace Day08
 
 
                 CHALLENGE 2:
-                    Create a List of Weapon. Create several Pistols and add them to the list of weapons.
+                    Create a List of Weapon. 
+                    Create several Pistols and 
+                    add them to the list of weapons.
             */
+            List<Weapon> dorasBackpack = new List<Weapon>();
+            dorasBackpack.Add(new Pistol(50, 100, 6, 1));//upcasting to Weapon
+            dorasBackpack.Add(new Pistol(20, 50, 2, 1));
+            dorasBackpack.Add(new Knife(3, 10, true));
 
 
+            int num = 5;//4 bytes
+            long bigNum = num;//8 bytes. implicit casting
+            num = (int)bigNum;//explicit casting
 
 
+            //UPCASTING:
+            //  from a DERIVED variable to a BASE variable
+            Car myRide = f150;//did we lose the truck parts?
+            //the Truck parts are inaccessible in the myRide
+            //b/c it's just a Car variable
+            //Pistol pewpew = (Pistol)f150;
 
 
 
@@ -100,9 +115,31 @@ namespace Day08
                     Downcast to a Pistol and print the rounds and mag capacity of each pistol
             */
 
+            Weapon currentWeapon = new Pistol(100, 100, 10, 10);//upcasting
+            currentWeapon = new Knife(4, 10, true);
 
+            //explicitly cast it inside a try-catch
+            try
+            {
+                Pistol sixShooter = (Pistol)currentWeapon;
+            }
+            catch (InvalidCastException invalid)
+            {
 
+            }
+            catch (Exception) //handle the exception
+            {
+            }
 
+            //use the 'as' keyword to cast
+            //if cannot cast, will assign NULL to the variable
+            Pistol pewpew = currentWeapon as Pistol;
+            if (pewpew != null)
+                Console.WriteLine($"Rounds: {pewpew.Rounds}");
+
+            //use the 'is' keyword to pattern match
+            if(currentWeapon is Pistol shooter)
+                Console.WriteLine($"Rounds: {shooter.Rounds}");
 
 
 
