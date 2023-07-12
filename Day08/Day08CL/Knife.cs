@@ -14,5 +14,11 @@ namespace Day08CL
         {
             IsSerrated = isSerrated;
         }
+        public override void ShowMe()
+        {
+            Console.WriteLine("This is a knife! ");
+            base.ShowMe();
+            Console.WriteLine($"\tIs Serrated? {IsSerrated}");
+        }
     }
 }

@@ -145,11 +145,13 @@ namespace Day08
             Console.WriteLine("   Dora's Backpack");
             foreach (Weapon weapon in dorasBackpack)
             {
+                //open for extension, closed for modification
                 weapon.ShowMe();
-                if(weapon is Pistol bang)
-                    Console.WriteLine($"\tRounds: {bang.Rounds}  Capacity: {bang.MagCapacity}");
-                else if(weapon is Knife slasher)
-                    Console.WriteLine($"\tIs Serrated? {slasher.IsSerrated}");
+
+                //if(weapon is Pistol bang)
+                //    Console.WriteLine($"\tRounds: {bang.Rounds}  Capacity: {bang.MagCapacity}");
+                //else if(weapon is Knife slasher)
+                //    Console.WriteLine($"\tIs Serrated? {slasher.IsSerrated}");
             }
 
 
@@ -179,6 +181,14 @@ namespace Day08
                     In Pistol's version, call the base version and print out the rounds and magCapacity
                     Fix the loop to remove the if-elseif.
             */
+
+            Superhero batman = new Superhero();
+            Person bruce = batman;//upcasting
+            Person alfred = new Person();
+
+            batman.Eat("Lobster Pomodoro");
+            bruce.Eat("Lobster Pomodoro");//which Eat will it call?
+            alfred.Eat("Tea and biscuits");
         }
     }
 }

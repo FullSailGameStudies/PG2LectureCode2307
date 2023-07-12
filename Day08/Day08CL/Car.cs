@@ -8,6 +8,7 @@ namespace Day08CL
 {
     public class Car
     {
+        protected string _vin = "1234578";
         public Car(string make, string model, int year)
         {
             Console.WriteLine("Car Ctor");
@@ -35,6 +36,7 @@ namespace Day08CL
             TowingCapacity = towing;
             BedSize = bedSize;
             DualCab = isDualCab;
+            Console.WriteLine(_vin);
         }
         public int TowingCapacity { get; set; }
         public int BedSize { get; set; }

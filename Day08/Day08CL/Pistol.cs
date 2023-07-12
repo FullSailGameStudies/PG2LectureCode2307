@@ -16,5 +16,12 @@ namespace Day08CL
             MagCapacity = magCapacity;
             Rounds = rounds;
         }
+
+        public override void ShowMe()
+        {
+            Console.WriteLine("This is a Pistol! ");
+            base.ShowMe();
+            Console.WriteLine($"\tRounds: {Rounds}  Capacity: {MagCapacity}");
+        }
     }
 }
