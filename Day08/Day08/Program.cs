@@ -142,6 +142,15 @@ namespace Day08
                 Console.WriteLine($"Rounds: {shooter.Rounds}");
 
 
+            Console.WriteLine("   Dora's Backpack");
+            foreach (Weapon weapon in dorasBackpack)
+            {
+                weapon.ShowMe();
+                if(weapon is Pistol bang)
+                    Console.WriteLine($"\tRounds: {bang.Rounds}  Capacity: {bang.MagCapacity}");
+                else if(weapon is Knife slasher)
+                    Console.WriteLine($"\tIs Serrated? {slasher.IsSerrated}");
+            }
 
 
 
