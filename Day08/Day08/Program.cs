@@ -1,4 +1,6 @@
-﻿namespace Day08
+﻿using Day08CL;
+
+namespace Day08
 {
     /*                    DERIVING CLASSESS          
                                                                
@@ -22,6 +24,10 @@
     {
         static void Main(string[] args)
         {
+            Car batmobile = Factory.MakeCar("WayneTech", "B1000", 2015);
+            Truck f150 = new Truck(10000, 100, true, "Ford", "F150", 2023);
+
+            //Weapon pew = new Weapon(100, 100);
 
             /*
                 CHALLENGE 1:
