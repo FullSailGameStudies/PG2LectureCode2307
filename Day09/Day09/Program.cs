@@ -10,6 +10,10 @@
             int n1 = 5, n2 = 2;
             int sum = t1000.Sum(n1,n2);
             Console.WriteLine($"{n1} + {n2} = {sum}");
+
+            List<int> nums = new() { 5, 4, 3, 2, 1, 100 };
+            t1000.Average(nums);
+            //open for extension, closed for modification
         }
     }
 
@@ -33,6 +37,23 @@
         public int Sum(int n1, int n2)
         {
             return n1 + n2;
+        }
+        public double Sum(double n1, double n2)
+        {
+            return n1 + n2;
+        }
+    }
+
+    enum Color
+    {
+        Red, Black, Green, ForestGreen
+    }
+
+    static class Extensions
+    {
+        public static double Average(this Calculator t1000, List<int> ints)
+        {
+            return ints.Average();
         }
     }
 }
