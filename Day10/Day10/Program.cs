@@ -119,7 +119,22 @@
             string csvString = "Batman;Bruce Wayne;Bats;The Dark Knight";
             string[] data = csvString.Split(';');
 
-
+            fullfilePath = Path.Combine(directories, fileName);
+            //File.ReadAllText
+            //  does all 3 steps: Open, Read, Close
+            string csvData = File.ReadAllText(fullfilePath);
+            Console.WriteLine(csvData);
+            //string Split returns a string[]
+            string[] batData = csvData.Split(delimiter);
+            foreach (var item in batData)
+            {
+                Console.WriteLine(item);
+            }
+            string catchPhrase = batData[0];
+            int age = int.Parse(batData[1]);
+            bool isTheBest = bool.Parse(batData[2]);
+            double grade = double.Parse(batData[3]);
+            Console.WriteLine($"{catchPhrase}\t{age}\t{isTheBest}\t{grade}");
 
             /*
                 CHALLENGE 2:
