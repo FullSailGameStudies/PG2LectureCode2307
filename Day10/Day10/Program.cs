@@ -61,18 +61,38 @@
 
             */
 
-            string directories = @"C:\temp\2212"; //use @ in front of the string to ignore escape sequences inside the string
+            string directories = @"C:\temp\2307"; //use @ in front of the string to ignore escape sequences inside the string
             string fileName = "tempFile.txt";
-            string filePath = Path.Combine(directories, fileName); //use Path.Combine to get the proper directory separators
+            string fullfilePath = Path.Combine(directories, fileName); //use Path.Combine to get the proper directory separators
 
 
+            //1. OPEN the file
+            //  where? fullfilepath
+            //  how to open? WRITE/OVERWRITE
+
+            string myPath = @"C:\temp\2307";
+            char delimiter = '^';
+            using (StreamWriter sw = new StreamWriter(fullfilePath))
+            {
+                //2. Write the data
+                sw.Write("Batman rules!");
+                sw.Write(delimiter);
+                sw.Write(15);
+                sw.Write(delimiter);
+                sw.Write(true);
+                sw.Write(delimiter);
+                sw.Write(23.078);
+            }//3. CLOSES the file
 
             /*
                 CHALLENGE 1:
                     Create a List of Superhero.
                     Write the list to a CSV file             
             */
-
+            List<Superhero> jla = new List<Superhero>();
+            jla.Add(new Superhero() { Name = "Batman", Secret = "Bruce Wayne", Power = Powers.Money });
+            jla.Add(new Superhero() { Name = "Wonder Woman", Secret = "Diana Prince", Power = Powers.Strength });
+            jla.Add(new Superhero() { Name = "Superman", Secret = "Clark Kent", Power = Powers.Jumping });
 
 
 
