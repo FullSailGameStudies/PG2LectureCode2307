@@ -215,7 +215,7 @@ namespace Day10
                 Recreating the objects from the saved state (data) of objects
 
             */
-            fullfilePath = Path.Combine(directories, "jla.json");
+            fullfilePath = Path.Combine(directories, "garrett.json");
             // Program DEFENSIVELY
             if (File.Exists(fullfilePath))
             {
@@ -242,6 +242,29 @@ namespace Day10
                 Challenge 4: deserialize the jla.json file into a list of superheroes
 
             */
+
+            fullfilePath = Path.Combine(directories, jlaFile);
+            try
+            {
+                List<Superhero> DC2 = JsonConvert.DeserializeObject<List<Superhero>>(File.ReadAllText(fullfilePath));
+                Console.WriteLine("   DC2 List   ");
+                foreach (var hero in DC2)
+                {
+                    Console.WriteLine($"{hero.Name} aka {hero.Secret}. I can do {hero.Power}!");
+                }
+            }
+            catch(FileNotFoundException)
+            {
+                Console.WriteLine($"{fullfilePath} does not exists!");
+            }
+            catch (JsonSerializationException)
+            {
+                Console.WriteLine("The file is the wrong format.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
