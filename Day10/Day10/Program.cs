@@ -1,4 +1,6 @@
-﻿namespace Day10
+﻿using Newtonsoft.Json;
+
+namespace Day10
 {
 
     /*
@@ -179,13 +181,28 @@
                 Saving the state (data) of objects
 
             */
-
+            Superhero hero1 = new Superhero() { Name = "Garrett", Secret = "Batman", Power = Powers.Swimming };
+            fullfilePath = Path.Combine(directories, "garrett.json");
+            using (StreamWriter sw = new StreamWriter(fullfilePath))
+            {
+                using(JsonTextWriter  jsonWriter = new JsonTextWriter(sw))
+                {
+                    JsonSerializer serializer = new();
+                    serializer.Formatting = Formatting.Indented;
+                    serializer.Serialize(jsonWriter, hero1);//write json data to the file
+                }
+            }
+            //OR...
+            File.WriteAllText(fullfilePath, JsonConvert.SerializeObject(hero1, Formatting.Indented));
 
 
             /*
              * Challenge 3:
                 Serialize (write) the list of superheroes to a json file
             */
+            jlaFile = Path.ChangeExtension(jlaFile, "json");
+            fullfilePath = Path.Combine(directories, jlaFile);
+            File.WriteAllText(fullfilePath, JsonConvert.SerializeObject(jla, Formatting.Indented));
 
 
 
@@ -198,8 +215,27 @@
                 Recreating the objects from the saved state (data) of objects
 
             */
+            fullfilePath = Path.Combine(directories, "jla.json");
+            // Program DEFENSIVELY
+            if (File.Exists(fullfilePath))
+            {
+                string garrettText = File.ReadAllText(fullfilePath);
+                try
+                {
+                    Superhero theBest = JsonConvert.DeserializeObject<Superhero>(garrettText);
+                    Console.WriteLine($"The BEST! {theBest.Name} aka {theBest.Secret}. He can do {theBest.Power}!");
 
-
+                }
+                catch(JsonSerializationException)
+                {
+                    Console.WriteLine("The file is the wrong format.");
+                }
+                catch (Exception)
+                {
+                }            
+            }
+            else
+                Console.WriteLine($"{fullfilePath} does not exists!");
 
             /*
              
