@@ -93,8 +93,17 @@
             jla.Add(new Superhero() { Name = "Batman", Secret = "Bruce Wayne", Power = Powers.Money });
             jla.Add(new Superhero() { Name = "Wonder Woman", Secret = "Diana Prince", Power = Powers.Strength });
             jla.Add(new Superhero() { Name = "Superman", Secret = "Clark Kent", Power = Powers.Jumping });
-
-
+            string jlaFile = "jla.csv";
+            fullfilePath = Path.Combine(directories, jlaFile);
+            using (StreamWriter sw = new StreamWriter(fullfilePath))
+            {
+                sw.WriteLine($"Name{delimiter}Secret{delimiter}Power");
+                foreach (var hero in jla)
+                {
+                    //add the \n as the hero delimiter
+                    sw.WriteLine($"{hero.Name}{delimiter}{hero.Secret}{delimiter}{hero.Power}");
+                }
+            }
 
 
             /*
