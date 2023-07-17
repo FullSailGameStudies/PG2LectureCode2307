@@ -140,8 +140,32 @@
                 CHALLENGE 2:
 
                     Open the CSV file and read the data into a new list of superheroes
+
+                read the text from the file
+                split to get each row (\n is the delimiter)
+                skip the first line (header row)
+                for the other lines
+                    skip any empty lines
+                    split the line to get the hero data
+                    create a new superhero and fill in the data using the hero data
+                    add the superhero to the list
              
             */
+            fullfilePath = Path.Combine(directories, jlaFile);
+            string heroText = File.ReadAllText(fullfilePath);
+            string[] heroLines = heroText.Split('\n');
+            List<Superhero> DC = new();
+            for (int i = 1; i < heroLines.Length-1; i++) //skip the first and last lines
+            {
+                string[] heroData = heroLines[i].Split(delimiter);
+                Superhero hero = new()
+                {
+                    Name = heroData[0],
+                    Secret = heroData[1],
+                    Power = Enum.Parse<Powers>(heroData[2])
+                };
+                DC.Add(hero);
+            }
 
 
 
