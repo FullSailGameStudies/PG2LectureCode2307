@@ -39,6 +39,10 @@ int main()
     }
     cout << "\n";
 
+    //int* nums = new int[5] {1, 2, 3, 4, 5};
+    //for (int v : nums)
+    //    cout << v << "\n";
+
     //auto == C# var
     //range-based for loop
     for (auto c : theBest)
